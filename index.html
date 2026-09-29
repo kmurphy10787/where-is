@@ -231,47 +231,7 @@
       font-size: 12px;
       background: rgba(0,0,0,0.06);
     }
-  
-    /* Phone / tablet layout */
-    @media (max-width: 700px) {
-      body { padding: 10px; }
-      header { padding: 14px; margin-bottom: 12px; }
-      .header-top { gap: 10px; }
-      h1 { font-size: 21px; }
-      .subtitle { font-size: 12px; }
-      .time-badge { font-size: 16px; padding: 7px 11px; }
-      .controls-bar { margin-top: 12px; padding-top: 12px; gap: 9px; }
-      .control-group { width: 100%; flex-wrap: wrap; }
-      .control-group button { flex: 1; min-height: 42px; }
-      input[type="range"] { flex: 1; min-width: 150px; width: auto; }
-      input[type="time"], input[type="date"], select, input[type="text"] {
-        min-height: 40px; font-size: 15px;
-      }
-      input[type="text"] { width: 100%; }
-      .dashboard-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      .card { padding: 14px; border-radius: 10px; }
-      .card-title { font-size: 18px; }
-      .activity-title { font-size: 20px; }
-      .full-schedules { margin-top: 14px; padding: 12px; overflow-x: auto; }
-      .tab-buttons { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
-      .tab-buttons button { white-space: nowrap; min-height: 40px; }
-      .schedule-table { min-width: 650px; }
-    }
-    @media (display-mode: standalone) {
-      body { padding-top: max(10px, env(safe-area-inset-top)); }
-    }
-
   </style>
-
-  <meta name="theme-color" content="#0f172a">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Where Is? BBS">
-  <link rel="manifest" href="manifest.json">
-
 </head>
 <body>
 
@@ -331,36 +291,41 @@
       "2027-05-26": 2, "2027-06-02": 1, "2027-06-09": 4
     };
 
-    // Teacher Specials Matrix mapped to day schedules
-    const specialsMatrix = {
-      "DiCicco AM":  { Mon: "Music",   Tue: "Library", Thu: "PE",      Fri: "Art" },
-      "Lincoln AM":  { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music" },
-      "Kukucka":     { Mon: "PE",      Tue: "Art",     Thu: "Music",   Fri: "Library" },
-      "Swanson":     { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE" },
-      "DiCicco PM":  { Mon: "Music",   Tue: "Library", Thu: "PE",      Fri: "Art" },
-      "Lincoln PM":  { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music" },
-      "Bechard":     { Mon: "PE",      Tue: "Art",     Thu: "Music",   Fri: "Library" },
-      "Berry":       { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music" },
-      "Wloch":       { Mon: "Music",   Tue: "Library", Thu: "PE",      Fri: "Art" },
-      "Burgess":     { Mon: "PE",      Tue: "Art",     Thu: "Music",   Fri: "Library" },
-      "Duquette":    { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music" },
-      "Tardif":      { Mon: "Music",   Tue: "Library", Thu: "PE",      Fri: "Art" },
-      "Fay":         { Mon: "PE",      Tue: "Art",     Thu: "Music",   Fri: "Library" },
-      "Gandre":      { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music" },
-      "Cohen":       { Mon: "PE",      Tue: "Art",     Thu: "Music",   Fri: "Library" },
-      "Lanz":        { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music" },
-      "Koczera":     { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music" },
-      "Spencer":     { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE" },
-      "Marini":      { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE" },
-      "Garrison":    { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE" },
-      "Goldstein":   { Mon: "Music",   Tue: "Library", Thu: "PE",      Fri: "Art" },
-      "Sundar Raj":  { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE" },
-      "Tumosa":      { Mon: "Music",   Tue: "Library", Thu: "PE",      Fri: "Art" },
-      "Belco":       { Mon: "PE",      Tue: "Art",     Thu: "Music",   Fri: "Library" },
-      "Majowicz":    { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE" },
-      "Wyse":        { Mon: "Music",   Tue: "Library", Thu: "PE",      Fri: "Art" }
-    };
+    // Teacher Specials Rotations Matrix
+const specialsMatrix = {
+  "DiCicco AM":  { Mon: "Music",   Tue: "Art",     Thu: "Library", Fri: "PE",      wedRot: {1:"Music",   2:"Art",     3:"Library", Fri:"PE"} },
+  "Lincoln AM":  { Mon: "Library", Tue: "Music",   Thu: "PE",      Fri: "Art",     wedRot: {1:"Library", 2:"Music",   3:"PE",      4:"Art"} },
+  "Kukucka":     { Mon: "PE",      Tue: "Library", Thu: "Art",     Fri: "Music",   wedRot: {1:"PE",      2:"Library", 3:"Art",     4:"Music"} },
+  "Swanson":     { Mon: "Art",     Tue: "PE",      Thu: "Music",   Fri: "Library", wedRot: {1:"Art",     2:"PE",      3:"Music",   4:"Library"} },
 
+  "DiCicco PM":  { Mon: "Music",   Tue: "Art",     Thu: "Library", Fri: "PE",      wedRot: {1:"Music",   2:"Art",     3:"Library", 4:"PE"} },
+  "Lincoln PM":  { Mon: "Library", Tue: "Music",   Thu: "PE",      Fri: "Art",     wedRot: {1:"Library", 2:"Music",   3:"PE",      4:"Art"} },
+
+  "Bechard":     { Mon: "PE",      Tue: "Library", Thu: "Music",   Fri: "Art",     wedRot: {1:"PE",      2:"Library", 3:"Music",   4:"Art"} },
+  "Berry":       { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE",      3:"Art",     4:"Music"} },
+  "Spencer":     { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE",      wedRot: {1:"Art",     2:"Music",   3:"Library", 4:"PE"} },
+  "Wloch":       { Mon: "Music",   Tue: "Art",     Thu: "PE",      Fri: "Library", wedRot: {1:"Music",   2:"Art",     3:"PE",      4:"Library"} },
+
+  "Burgess":     { Mon: "PE",      Tue: "Library", Thu: "Music",   Fri: "Art",     wedRot: {1:"PE",      2:"Library", 3:"Music",   4:"Art"} },
+  "Duquette":    { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE",      3:"Art",     4:"Music"} },
+  "Marini":      { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE",      wedRot: {1:"Art",     2:"Music",   3:"Library", 4:"PE"} },
+  "Tardif":      { Mon: "Music",   Tue: "Art",     Thu: "PE",      Fri: "Library", wedRot: {1:"Music",   2:"Art",     3:"PE",      4:"Library"} },
+
+  "Fay":         { Mon: "PE",      Tue: "Library", Thu: "Music",   Fri: "Art",     wedRot: {1:"PE",      2:"Library", 3:"Music",   4:"Art"} },
+  "Gandre":      { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE",      3:"Art",     4:"Music"} },
+  "Garrison":    { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE",      wedRot: {1:"Art",     2:"Music",   3:"Library", 4:"PE"} },
+  "Goldstein":   { Mon: "Music",   Tue: "Art",     Thu: "PE",      Fri: "Library", wedRot: {1:"Music",   2:"Art",     3:"PE",      4:"Library"} },
+
+  "Cohen":       { Mon: "PE",      Tue: "Library", Thu: "Music",   Fri: "Art",     wedRot: {1:"PE",      2:"Library", 3:"Music",   4:"Art"} },
+  "Lanz":        { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE",      3:"Art",     4:"Music"} },
+  "Sundar Raj":  { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE",      wedRot: {1:"Art",     2:"Music",   3:"Library", 4:"PE"} },
+  "Tumosa":      { Mon: "Music",   Tue: "Art",     Thu: "PE",      Fri: "Library", wedRot: {1:"Music",   2:"Art",     3:"PE",      4:"Library"} },
+
+  "Belco":       { Mon: "PE",      Tue: "Library", Thu: "Music",   Fri: "Art",     wedRot: {1:"PE",      2:"Library", 3:"Music",   4:"Art"} },
+  "Koczera":     { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE",      3:"Art",     4:"Music"} },
+  "Majowicz":    { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE",      wedRot: {1:"Art",     2:"Music",   3:"Library", 4:"PE"} },
+  "Wyse":        { Mon: "Music",   Tue: "Art",     Thu: "PE",      Fri: "Library", wedRot: {1:"Music",   2:"Art",     3:"PE",      4:"Library"} }
+};
     const teacherGradeMap = {
       "DiCicco AM": "AM/PM Preschool", "Lincoln AM": "AM/PM Preschool", "Kukucka": "Full Day Preschool", "Swanson": "Full Day Preschool",
       "DiCicco PM": "AM/PM Preschool", "Lincoln PM": "AM/PM Preschool",
@@ -381,11 +346,10 @@
         { start: "10:35", end: "11:20", name: "ELA Centers", loc: "Classroom" },
         { start: "11:30", end: "11:55", name: "Full-Day Lunch", loc: "Cafeteria" },
         { start: "12:00", end: "12:30", name: "Writing", loc: "Classroom" },
-        { start: "12:35", end: "13:30", name: "Rest Time", isSpecials: true, loc: "Classroom" },
-        { start: "13:30", end: "14:00", name: "Math", loc: "Classroom" },
-        { start: "14:00", end: "14:20", name: "Recess", loc: "Classroom" },
-        { start: "14:25", end: "14:50", name: "Snack", loc: "Classroom" },
-        { start: "14:50", end: "15:25", name: "Centers", loc: "Classroom" },
+        { start: "12:35", end: "13:20", name: "Specials", isSpecials: true, loc: "Specials Room" },
+        { start: "13:25", end: "13:50", name: "Recess", loc: "Playground" },
+        { start: "13:55", end: "14:35", name: "STEM", stemOnly: true, altName: "Math", loc: "STEM Lab" },
+        { start: "14:40", end: "15:25", name: "Math", stemOnly: true, altName: "Purposeful Play/iReady", loc: "Classroom" },
         { start: "15:25", end: "15:40", name: "Pack Up/Dismissal", loc: "Classroom" }
       ]},
       "AM/PM Preschool": { color: "yellow", items: [
@@ -401,7 +365,7 @@
         { start: "13:55", end: "14:10", name: "Snack", loc: "Classroom" },
         { start: "14:15", end: "14:35", name: "PM Specials", isSpecials: true, loc: "Specials Room" },
         { start: "14:40", end: "15:00", name: "Recess", loc: "Playground" },
-        { start: "15:00", end: "15:20", name: "Centers/Read Aloud", loc: "Classroom" },
+        { start: "15:00", end: "15:20", name: "Additional Centers", loc: "Classroom" },
         { start: "15:20", end: "15:40", name: "Dismissal", loc: "Classroom" }
       ]},
       "Kindergarten": { color: "pink", items: [
@@ -414,7 +378,6 @@
         { start: "12:00", end: "12:30", name: "Writing", loc: "Classroom" },
         { start: "12:35", end: "13:20", name: "Specials", isSpecials: true, loc: "Specials Room" },
         { start: "13:25", end: "13:50", name: "Recess", loc: "Playground" },
-        { start: "13:50", end: "13:55", name: "Snack", loc: "Classroom" },
         { start: "13:55", end: "14:35", name: "STEM", stemOnly: true, altName: "Math", loc: "STEM Lab" },
         { start: "14:40", end: "15:25", name: "Math", stemOnly: true, altName: "Purposeful Play/iReady", loc: "Classroom" },
         { start: "15:25", end: "15:40", name: "Dismissal", loc: "Classroom" }
@@ -443,7 +406,6 @@
         { start: "12:00", end: "12:30", name: "WINN", loc: "Classroom" },
         { start: "12:30", end: "12:45", name: "Writing", loc: "Classroom" },
         { start: "12:45", end: "13:25", name: "STEM/Social Studies/Science", loc: "Classroom/STEM" },
-        { start: "13:25", end: "13:30", name: "Snack", loc: "Classroom" },
         { start: "13:30", end: "13:45", name: "Number Corner", loc: "Classroom" },
         { start: "13:50", end: "14:35", name: "Math", loc: "Classroom" },
         { start: "14:40", end: "15:25", name: "Specials", isSpecials: true, loc: "Specials Room" },
@@ -453,11 +415,10 @@
         { start: "09:05", end: "09:30", name: "Morning Meeting", loc: "Classroom" },
         { start: "09:30", end: "10:30", name: "Math", loc: "Classroom" },
         { start: "10:35", end: "11:15", name: "Specials (Block 1)", isSpecials: true, loc: "Specials Room" },
-        { start: "11:20", end: "12:05", name: "Writing", loc: "Classroom" },
-        { start: "12:00", end: "12:40", name: "STEM/Social Studies/Science", loc: "Classroom/STEM" },
-        { start: "12:45", end: "13:10", name: "Recess", loc: "Playground" },
-        { start: "13:10", end: "13:40", name: "Lunch", loc: "Cafeteria" },
-        { start: "13:45", end: "14:25", name: "Reading", loc: "Classroom" },
+        { start: "11:20", end: "12:05", name: "Specials (Block 2)", isSpecials: true, loc: "Specials Room" },
+        { start: "12:10", end: "12:35", name: "Recess", loc: "Playground" },
+        { start: "12:35", end: "13:05", name: "Lunch", loc: "Cafeteria" },
+        { start: "13:10", end: "14:10", name: "Reading", loc: "Classroom" },
         { start: "14:25", end: "14:55", name: "Fundations", loc: "Classroom" },
         { start: "14:55", end: "15:25", name: "WINN", loc: "Classroom" },
         { start: "15:25", end: "15:40", name: "Dismissal", loc: "Classroom" }
@@ -471,7 +432,6 @@
         { start: "12:35", end: "13:05", name: "Lunch", loc: "Cafeteria" },
         { start: "13:10", end: "14:10", name: "Reading", loc: "Classroom" },
         { start: "14:10", end: "14:40", name: "Writing", loc: "Classroom" },
-        { start: "14:40", end: "14:45", name: "Snack", loc: "Classroom" },
         { start: "14:45", end: "15:25", name: "STEM", loc: "STEM Lab" },
         { start: "15:25", end: "15:40", name: "Dismissal", loc: "Classroom" }
       ]}
@@ -513,38 +473,20 @@
 
       if (!tData || dayNum === 0 || dayNum === 6) return "No Specials (Weekend)";
 
-      // Standard Mon / Tue / Thu / Fri schedule lookup
       if (dayNum === 1) return tData.Mon;
-      if (dayNum === 2) return tData.Tue;
+      if (dayNum === 2) return tData.Tue === "WedRot" ? "Rotation" : tData.Tue;
       if (dayNum === 4) return tData.Thu;
       if (dayNum === 5) return tData.Fri;
 
-      // Wednesday Week Rotation Logic:
-      // Week 1 = Monday Specials, Week 2 = Tuesday Specials, Week 3 = Thursday Specials, Week 4 = Friday Specials
       if (dayNum === 3) {
-        const rotationWeek = wednesdayRotationMap[dateStr] || 1;
-        
-        switch (rotationWeek) {
-          case 1: return tData.Mon; // Week 1 -> Monday Special
-          case 2: return tData.Tue; // Week 2 -> Tuesday Special
-          case 3: return tData.Thu; // Week 3 -> Thursday Special
-          case 4: return tData.Fri; // Week 4 -> Friday Special
-          default: return tData.Mon;
-        }
+        const weekNum = wednesdayRotationMap[dateStr] || 1;
+        return tData.wedRot[weekNum] || "Rotation";
       }
-      
       return "N/A";
     }
 
     function toggleLiveMode(val) {
       isLive = val;
-      if (isLive) {
-        const now = new Date();
-        const yyyy = now.getFullYear();
-        const mm = String(now.getMonth() + 1).padStart(2, '0');
-        const dd = String(now.getDate()).padStart(2, '0');
-        document.getElementById('datePicker').value = `${yyyy}-${mm}-${dd}`;
-      }
       document.getElementById('liveBtn').classList.toggle('active', isLive);
       document.getElementById('liveDot').style.backgroundColor = isLive ? '#22c55e' : '#94a3b8';
       renderDashboard();
@@ -612,8 +554,8 @@
           nextActivity = gradeData.items[currentIdx + 1];
         }
 
-        let name = "Transition";
-        let loc = "Hallway";
+        let name = "Not in Session";
+        let loc = "Outside Hours";
         let startMins = 0, endMins = 0, pct = 0, remaining = 0;
 
         if (currentActivity) {
@@ -644,7 +586,7 @@
                 <div class="card-title">${grade}</div>
                 <div class="location-badge">${loc}</div>
               </div>
-              <div class="time-range">${currentActivity ? `${formatMinutes(startMins)} - ${formatMinutes(endMins)}` : 'Currently'}</div>
+              <div class="time-range">${currentActivity ? `${formatMinutes(startMins)} - ${formatMinutes(endMins)}` : 'Closed'}</div>
               <div class="activity-title">${name}</div>
             </div>
 
@@ -744,13 +686,6 @@
     }, 10000);
 
     renderDashboard();
-
-    // Enable offline/app-style behavior when hosted over HTTPS.
-    if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js').catch(() => {});
-      });
-    }
   </script>
 </body>
 </html>
