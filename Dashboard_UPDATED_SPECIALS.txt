@@ -292,35 +292,34 @@
     };
 
     // Teacher Specials Rotations Matrix
-    const specialsMatrix = {
-      "DiCicco AM":  { Mon: "Music",   Tue: "Art",      Thu: "Library", Fri: "PE",      wedRot: {1:"Music", 2:"Art", 3:"Library", 4:"PE"} },
-      "Lincoln AM":  { Mon: "Library", Tue: "Music",    Thu: "PE",      Fri: "Art",     wedRot: {1:"Library", 2:"Music", 3:"PE", 4:"Art"} },
-      "Kukucka":     { Mon: "PE",      Tue: "Library",  Thu: "Art",     Fri: "Music",   wedRot: {1:"PE", 2:"Library", 3:"Art", 4:"Music"} },
-      "Swanson":     { Mon: "Art",     Tue: "PE",       Thu: "Music",   Fri: "Library", wedRot: {1:"Art", 2:"PE", 3:"Music", 4:"Library"} },
-      "DiCicco PM":  { Mon: "Music",   Tue: "Art",      Thu: "Library", Fri: "PE",      wedRot: {1:"Music", 2:"Art", 3:"Library", 4:"PE"} },
-      "Lincoln PM":  { Mon: "Library", Tue: "Music",    Thu: "PE",      Fri: "Art",     wedRot: {1:"Library", 2:"Music", 3:"PE", 4:"Art"} },
-      "Bechard":     { Mon: "PE",      Tue: "Library",  Thu: "Music",   Fri: "Art",     wedRot: {1:"PE", 2:"Library", 3:"Music", 4:"Art"} },
-      "Berry":       { Mon: "Library", Tue: "PE",       Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE", 3:"Art", 4:"Music"} },
-      "Wloch":       { Mon: "Music",   Tue: "Art",      Thu: "PE",      Fri: "Library", wedRot: {1:"Music", 2:"Art", 3:"PE", 4:"Library"} },
-      "Burgess":     { Mon: "PE",      Tue: "Library",  Thu: "Music",   Fri: "Art",     wedRot: {1:"PE", 2:"Library", 3:"Music", 4:"Art"} },
-      "Duquette":    { Mon: "Library", Tue: "PE",       Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE", 3:"Art", 4:"Music"} },
-      "Tardif":      { Mon: "Music",   Tue: "Art",      Thu: "PE",      Fri: "Library", wedRot: {1:"Music", 2:"Art", 3:"PE", 4:"Library"} },
-      "Fay":         { Mon: "PE",      Tue: "Library",  Thu: "Music",   Fri: "Art",     wedRot: {1:"PE", 2:"Library", 3:"Music", 4:"Art"} },
-      "Gandre":      { Mon: "Library", Tue: "PE",       Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE", 3:"Art", 4:"Music"} },
-      "Cohen":       { Mon: "PE",      Tue: "Library",  Thu: "Music",   Fri: "Art",     wedRot: {1:"PE", 2:"Library", 3:"Music", 4:"Art"} },
-      "Lanz":        { Mon: "Library", Tue: "PE",       Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE", 3:"Art", 4:"Music"} },
-      "Koczera":     { Mon: "Library", Tue: "PE",       Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE", 3:"Art", 4:"Music"} },
-      "Spencer":     { Mon: "Art",     Tue: "Music",    Thu: "Library", Fri: "PE",      wedRot: {1:"Art", 2:"Music", 3:"Library", 4:"PE"} },
-      "Marini":      { Mon: "Art",     Tue: "Music",    Thu: "Library", Fri: "PE",      wedRot: {1:"Art", 2:"Music", 3:"Library", 4:"PE"} },
-      "Garrison":    { Mon: "Art",     Tue: "Music",    Thu: "Library", Fri: "PE",      wedRot: {1:"Art", 2:"Music", 3:"Library", 4:"PE"} },
-      "Goldstein":   { Mon: "Music",   Tue: "Art",      Thu: "PE",      Fri: "Library", wedRot: {1:"Music", 2:"Art", 3:"PE", 4:"Library"} },
-      "Sundar Raj":  { Mon: "Art",     Tue: "Music",    Thu: "Library", Fri: "PE",      wedRot: {1:"Art", 2:"Music", 3:"Library", 4:"PE"} },
-      "Tumosa":      { Mon: "Music",   Tue: "Art",      Thu: "PE",      Fri: "Library", wedRot: {1:"Music", 2:"Art", 3:"PE", 4:"Library"} },
-      "Belco":       { Mon: "PE",      Tue: "Library",  Thu: "Music",   Fri: "Art",     wedRot: {1:"PE", 2:"Library", 3:"Music", 4:"Art"} },
-      "Majowicz":    { Mon: "Art",     Tue: "Music",    Thu: "Library", Fri: "PE",      wedRot: {1:"Art", 2:"Music", 3:"Library", 4:"PE"} },
-      "Wyse":        { Mon: "Music",   Tue: "Art",      Thu: "PE",      Fri: "Library", wedRot: {1:"Music", 2:"Art", 3:"PE", 4:"Library"} }
-    };
-
+const specialsMatrix = {
+  "DiCicco AM":  { Mon: "Music",   Tue: "Art",     Thu: "Library", Fri: "PE",      wedRot: {1:"Music",   2:"Art",     3:"Library", Fri:"PE"} },
+  "Lincoln AM":  { Mon: "Library", Tue: "Music",   Thu: "PE",      Fri: "Art",     wedRot: {1:"Library", 2:"Music",   3:"PE",      4:"Art"} },
+  "Kukucka":     { Mon: "PE",      Tue: "Library", Thu: "Art",     Fri: "Music",   wedRot: {1:"PE",      2:"Library", 3:"Art",     4:"Music"} },
+  "Swanson":     { Mon: "Art",     Tue: "PE",      Thu: "Music",   Fri: "Library", wedRot: {1:"Art",     2:"PE",      3:"Music",   4:"Library"} },
+  "DiCicco PM":  { Mon: "Music",   Tue: "Art",     Thu: "Library", Fri: "PE",      wedRot: {1:"Music",   2:"Art",     3:"Library", 4:"PE"} },
+  "Lincoln PM":  { Mon: "Library", Tue: "Music",   Thu: "PE",      Fri: "Art",     wedRot: {1:"Library", 2:"Music",   3:"PE",      4:"Art"} },
+  "Bechard":     { Mon: "PE",      Tue: "Library", Thu: "Music",   Fri: "Art",     wedRot: {1:"PE",      2:"Library", 3:"Music",   4:"Art"} },
+  "Berry":       { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE",      3:"Art",     4:"Music"} },
+  "Spencer":     { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE",      wedRot: {1:"Art",     2:"Music",   3:"Library", 4:"PE"} },
+  "Wloch":       { Mon: "Music",   Tue: "Art",     Thu: "PE",      Fri: "Library", wedRot: {1:"Music",   2:"Art",     3:"PE",      4:"Library"} },
+  "Burgess":     { Mon: "PE",      Tue: "Library", Thu: "Music",   Fri: "Art",     wedRot: {1:"PE",      2:"Library", 3:"Music",   4:"Art"} },
+  "Duquette":    { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE",      3:"Art",     4:"Music"} },
+  "Marini":      { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE",      wedRot: {1:"Art",     2:"Music",   3:"Library", 4:"PE"} },
+  "Tardif":      { Mon: "Music",   Tue: "Art",     Thu: "PE",      Fri: "Library", wedRot: {1:"Music",   2:"Art",     3:"PE",      4:"Library"} },
+  "Fay":         { Mon: "PE",      Tue: "Library", Thu: "Music",   Fri: "Art",     wedRot: {1:"PE",      2:"Library", 3:"Music",   4:"Art"} },
+  "Gandre":      { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE",      3:"Art",     4:"Music"} },
+  "Garrison":    { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE",      wedRot: {1:"Art",     2:"Music",   3:"Library", 4:"PE"} },
+  "Goldstein":   { Mon: "Music",   Tue: "Art",     Thu: "PE",      Fri: "Library", wedRot: {1:"Music",   2:"Art",     3:"PE",      4:"Library"} },
+  "Cohen":       { Mon: "PE",      Tue: "Library", Thu: "Music",   Fri: "Art",     wedRot: {1:"PE",      2:"Library", 3:"Music",   4:"Art"} },
+  "Lanz":        { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE",      3:"Art",     4:"Music"} },
+  "Sundar Raj":  { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE",      wedRot: {1:"Art",     2:"Music",   3:"Library", 4:"PE"} },
+  "Tumosa":      { Mon: "Music",   Tue: "Art",     Thu: "PE",      Fri: "Library", wedRot: {1:"Music",   2:"Art",     3:"PE",      4:"Library"} },
+  "Belco":       { Mon: "PE",      Tue: "Library", Thu: "Music",   Fri: "Art",     wedRot: {1:"PE",      2:"Library", 3:"Music",   4:"Art"} },
+  "Koczera":     { Mon: "Library", Tue: "PE",      Thu: "Art",     Fri: "Music",   wedRot: {1:"Library", 2:"PE",      3:"Art",     4:"Music"} },
+  "Majowicz":    { Mon: "Art",     Tue: "Music",   Thu: "Library", Fri: "PE",      wedRot: {1:"Art",     2:"Music",   3:"Library", 4:"PE"} },
+  "Wyse":        { Mon: "Music",   Tue: "Art",     Thu: "PE",      Fri: "Library", wedRot: {1:"Music",   2:"Art",     3:"PE",      4:"Library"} }
+};
     const teacherGradeMap = {
       "DiCicco AM": "AM/PM Preschool", "Lincoln AM": "AM/PM Preschool", "Kukucka": "Full Day Preschool", "Swanson": "Full Day Preschool",
       "DiCicco PM": "AM/PM Preschool", "Lincoln PM": "AM/PM Preschool",
